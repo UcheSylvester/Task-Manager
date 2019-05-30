@@ -12,7 +12,7 @@
 
         const task = taskInput.value
 
-        const htmlContent = `<div><input type="checkbox">${task}</div>`
+        const htmlContent = `<div class="task"><input type="checkbox">${task}</div>`
 
         taskContainer.insertAdjacentHTML('afterbegin', htmlContent);
 
