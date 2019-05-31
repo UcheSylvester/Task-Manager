@@ -1,3 +1,4 @@
+'use strict';
 
 (function() {
     console.log('working')
@@ -10,24 +11,32 @@
         e.preventDefault()
 
         const task = taskInput.value
-        const htmlContent = `<div class="task"><input class="checkbox" type="checkbox">${task}</div>`
+        const htmlContent = `
+            <div class="task">
+                <input class="checkbox" name="tasks" type="checkbox">
+                <label for="${task}">${task}</label>
+            </div>
+        `
         taskContainer.insertAdjacentHTML('afterbegin', htmlContent);
-
         // console.log(htmlContent)
-        taskInput.value = ''    //SETTING THE TASK INPUT TO EMPTY
+        taskInput.value = ''  //setting the input to empty after each TO-DO
 
-        const checkboxes = Array.from(document.getElementsByClassName('checkbox'));
-        console.log(checkboxes);
 
-        let done = false;
-        checkboxes.forEach(checkbox => {
-            console.log(checkbox)
-            if(checkbox.checked == true) {
-                done = true;
+        // marking each task when done
+        let checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(checkbox => checkbox.addEventListener('click', done));
 
-                console.log('checked')
-            }
-        })
+        function done() {
+            (this.checked) ? this.nextElementSibling.classList.add('done') : this.nextElementSibling.classList.remove('done');         
+        }
+
+        /*
+        The above can be done with the one-liner below
+        NOTE: with arrow function as an event callback, we loss access to  `this`
+        */
+        // checkboxes.forEach(checkbox => checkbox.addEventListener('click', (e) => (e.target.checked) ? e.target.nextElementSibling.classList.add('done') : e.target.nextElementSibling.classList.remove('done')));
+
 
     })
+
 }())
