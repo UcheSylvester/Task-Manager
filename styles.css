@@ -22,7 +22,7 @@ html, body {
 #task-container {
     margin-top: 2em;
     border: 2px solid red;
-    /* height: 50vh; */
+    height: 50vh;
     width: 90%;
 }
 

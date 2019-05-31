@@ -7,16 +7,27 @@
     const taskContainer = document.querySelector('#task-container')
 
     form.addEventListener('submit', function(e) {
-        
         e.preventDefault()
 
         const task = taskInput.value
-
-        const htmlContent = `<div class="task"><input type="checkbox">${task}</div>`
-
+        const htmlContent = `<div class="task"><input class="checkbox" type="checkbox">${task}</div>`
         taskContainer.insertAdjacentHTML('afterbegin', htmlContent);
 
-        taskInput.value = ''
+        // console.log(htmlContent)
+        taskInput.value = ''    //SETTING THE TASK INPUT TO EMPTY
+
+        const checkboxes = Array.from(document.getElementsByClassName('checkbox'));
+        console.log(checkboxes);
+
+        let done = false;
+        checkboxes.forEach(checkbox => {
+            console.log(checkbox)
+            if(checkbox.checked == true) {
+                done = true;
+
+                console.log('checked')
+            }
+        })
 
     })
 }())
