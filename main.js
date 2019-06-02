@@ -21,14 +21,17 @@ function getTodos() {
     todos.push(todo)
 
     // clearing the input
-    todoInput.value = ''
-    // console.log(todos);
-    displayTodo(todos)
+    todoInput.value = '';
+
+    save(todos)
+
+    // displaying todos
+    // displayTodo(todos);
 }
 
 
 function displayTodo(todos) {
-    console.log(todos);
+    // console.log(todos);
     let htmlContent = todos.map(todo => 
             `<div class="task">
                 <input class="checkbox" name="tasks" type="checkbox">
@@ -36,5 +39,26 @@ function displayTodo(todos) {
             </div>`
         ).join('')
 
-    todoContainer.insertAdjacentHTML('beforebegin', htmlContent)
+    if(todoContainer.hasChildNodes()) {
+        todoContainer.innerHTML = '';
+        todoContainer.insertAdjacentHTML('beforeend', htmlContent)
+    } else {
+        todoContainer.insertAdjacentHTML('beforeend', htmlContent)
+    }
+
+    // todoContainer.insertAdjacentHTML('beforeend', htmlContent)
+
 }
+
+// saving and retriving todos from localStorage
+function save(todos) {
+    const todosString = JSON.stringify(todos)
+    // console.log(todosString);
+    window.localStorage.setItem('tasks', todosString);  //saving todos to localstorage
+
+    const savedTodos = JSON.parse(window.localStorage.getItem('tasks'));  //getting them back and converting back to array to be displayed
+    console.log(savedTodos, typeof savedTodos)
+    
+    displayTodo(savedTodos)
+}
+
