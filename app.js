@@ -10,14 +10,14 @@
     form.addEventListener('submit', function(e) {
         e.preventDefault()
 
-        const task = taskInput.value
+        const task = taskInput.value;
         const htmlContent = `
             <div class="task">
                 <input class="checkbox" name="tasks" type="checkbox">
                 <label for="${task}">${task}</label>
             </div>
         `
-        taskContainer.insertAdjacentHTML('afterbegin', htmlContent);
+        taskContainer.insertAdjacentHTML('beforeend', htmlContent);
         // console.log(htmlContent)
         taskInput.value = ''  //setting the input to empty after each TO-DO
 
