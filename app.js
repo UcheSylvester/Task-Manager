@@ -5,7 +5,8 @@
 
     const form = document.querySelector('#task-form');
     const taskInput = document.querySelector('#task-input');
-    const taskContainer = document.querySelector('#task-container')
+    const taskContainer = document.querySelector('#task-container');
+    let tasks = []
 
     form.addEventListener('submit', function(e) {
         e.preventDefault()
@@ -18,18 +19,25 @@
             </div>
         `
         taskContainer.insertAdjacentHTML('beforeend', htmlContent);
-        // console.log(htmlContent)
-        taskInput.value = ''  //setting the input to empty after each TO-DO
-
+        taskInput.value = ''  //setting the input to empty after each TO-DO;
 
         // marking each task when done
         let checkboxes = document.querySelectorAll('input[type="checkbox"]');
         checkboxes.forEach(checkbox => checkbox.addEventListener('click', done));
-
         function done() {
             (this.checked) ? this.nextElementSibling.classList.add('done') : this.nextElementSibling.classList.remove('done');         
         }
 
+        tasks.push(task);
+        // console.log(tasks);
+
+        function save() {
+            const taskString = JSON.stringify(tasks)
+            console.log(taskString)
+            window.localStorage.setItem('tasks', taskString)
+        }
+
+        save()
         /*
         The above can be done with the one-liner below
         NOTE: with arrow function as an event callback, we loss access to  `this`
