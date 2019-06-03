@@ -1,5 +1,5 @@
 'use strict';
-
+ 
 console.log('working');
 
 const form = document.querySelector('form');
@@ -7,13 +7,12 @@ const todoInput = document.querySelector('#task-input');
 const todoContainer = document.querySelector('#task-container')
 let todos = [];
 
-
 form.addEventListener('submit', submitTodo);
 
 function submitTodo(e) {
     e.preventDefault();
-    getTodos(todos)
-    console.log(todos)
+    getTodos(todos);
+
 }
 
 function getTodos(todos) {
@@ -21,13 +20,12 @@ function getTodos(todos) {
     const todo = todoInput.value;
     todos.push(todo);
 
-    // clearing the input
-    todoInput.value = '';
-
-    save(todos)
+    todoInput.value = '';   // clearing the input
+    save(todos);
+    // console.log(save(todos))
 
     // displaying todos
-    displayTodo(todos);
+    // displayTodo(todos);
 };
 // console.log(todos)
 
@@ -44,6 +42,8 @@ function save(todos) {
 }
 
 
+
+
 function displayTodo(todos) {
     // console.log(todos);
     let htmlContent = todos.map(todo => 
@@ -52,12 +52,6 @@ function displayTodo(todos) {
                 <label for="${todo}">${todo}</label>
             </div>`
         ).join('');
-
-        // let checkboxes = document.querySelectorAll('input[type="checkbox"]');
-        // checkboxes.forEach(checkbox => checkbox.addEventListener('click', done));
-        // function done() {
-        //     (this.checked) ? this.nextElementSibling.classList.add('done') : this.nextElementSibling.classList.remove('done');         
-        // }
 
     if(todoContainer.hasChildNodes()) {
         todoContainer.innerHTML = '';
@@ -69,5 +63,9 @@ function displayTodo(todos) {
     // todoContainer.insertAdjacentHTML('beforeend', htmlContent)
 
 }
+
+
+
+
 
 
