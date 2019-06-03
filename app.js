@@ -14,7 +14,11 @@
         const task = taskInput.value;
         const htmlContent = `
             <div class="task">
-                <input class="checkbox" name="tasks" type="checkbox">
+        let checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(checkbox => checkbox.addEventListener('click', done));
+        function done() {
+            (this.checked) ? this.nextElementSibling.classList.add('done') : this.nextElementSibling.classList.remove('done');         
+        }                <input class="checkbox" name="tasks" type="checkbox">
                 <label for="${task}">${task}</label>
             </div>
         `
@@ -22,11 +26,7 @@
         taskInput.value = ''  //setting the input to empty after each TO-DO;
 
         // marking each task when done
-        let checkboxes = document.querySelectorAll('input[type="checkbox"]');
-        checkboxes.forEach(checkbox => checkbox.addEventListener('click', done));
-        function done() {
-            (this.checked) ? this.nextElementSibling.classList.add('done') : this.nextElementSibling.classList.remove('done');         
-        }
+
 
         tasks.push(task);
         // console.log(tasks);
