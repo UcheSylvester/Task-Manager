@@ -1,7 +1,4 @@
-'use strict';
-
-console.log('working')
-
+'use strict'
 
 /** 
 console.log('working');
