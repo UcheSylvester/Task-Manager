@@ -5,11 +5,12 @@ console.log('working');
 const form = document.querySelector('form');
 const todoInput = document.querySelector('#task-input');
 const todoContainer = document.querySelector('#task-container')
-let todos = [];
 
 form.addEventListener('submit', submitTodo);
 
 function submitTodo(e) {
+    let todos = [];
+
     e.preventDefault();
     getTodos(todos);
 
@@ -40,8 +41,6 @@ function save(todos) {
     
     displayTodo(savedTodos)
 }
-
-
 
 
 function displayTodo(todos) {
