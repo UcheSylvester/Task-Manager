@@ -1,5 +1,9 @@
 'use strict';
- 
+
+console.log('working')
+
+
+/** 
 console.log('working');
 
 const form = document.querySelector('form');
@@ -63,8 +67,5 @@ function displayTodo(todos) {
 
 }
 
-
-
-
-
+**/
 
