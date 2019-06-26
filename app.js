@@ -13,23 +13,34 @@ function fetchTasks() {
     // looping through tasks to display
     tasks.forEach(task => {
         let description = task.description,
-            status = task.status;
+            status = task.status,
+            id = task.id
 
         taskContainer.innerHTML += `<div class="task">
-            <input type="checkbox"> ${description} <br>
-        <div>`
+            <input type="checkbox"> ${description} 
+            <button class="delete" deleteTask(${id})>Delete</button>
+            <br>
+        <div>
+        `
     })
 }
 
 function saveTask(e) {
     e.preventDefault()
-
+    
+    // calculating id
+    let id = 0;
+    function increaseId() {
+        return id++;
+    }
+    id = increaseId()
     const description = document.getElementById('task-input').value;
     console.log(description);
 
     const task = {
         description: description,
-        status: 'undone'
+        status: 'undone',
+        id: id
     }
 
     // saving to localStorage
@@ -50,6 +61,12 @@ function saveTask(e) {
 
     form.reset();
 
+}
+
+// Deleting Task
+
+function deleteTask() {
+    const tasks = JSON.parse(localStorage.getItem('tasks'));
 
 
 }
