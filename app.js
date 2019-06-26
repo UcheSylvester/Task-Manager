@@ -63,6 +63,18 @@ function saveTask(e) {
 
 }
 
+/*
+TODO:
+
+1. Delete tasks from localStorage
+     generate id for each task (deleteButton)
+     use the id to check for the task that matches the id and delete it
+
+2.  Mark task as done using the the same id
+
+*/
+
+
 // Deleting Task
 
 function deleteTask() {
