@@ -34,7 +34,7 @@ form {
     /* align-items: center; */
     margin-top: 2em;
     width: 100%;
-    background-color: aliceblue;
+    /* background-color: aliceblue; */
 }
 
 .task {
@@ -61,4 +61,13 @@ form {
 
 .done:hover {
     cursor: not-allowed;
+}
+
+.delete {
+    float: right;
+    padding: 10px;
+    border-radius: 6px;
+    color: rgb(235, 232, 232);
+    background-color: rgb(194, 35, 35);
+    border-color: inherit;
 }
