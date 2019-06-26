@@ -1,41 +1,21 @@
-'use strict';
+console.log('working');
 
-(function() {
-    console.log('working')
+const taskContainer = document.querySelector('.task-container');
 
-    const form = document.querySelector('#task-form');
-    const taskInput = document.querySelector('#task-input');
-    const taskContainer = document.querySelector('#todo-container');
-    let tasks = []
+// fetching tasks from localstorage
 
-    form.addEventListener('submit', function(e) {
-        e.preventDefault()
+function fetchTask() {
+    const tasks = JSON.parse(localStorage.getItem('tasks'));
 
-        const task = taskInput.value;
-        const htmlContent = `
-            <div class="task">
-                <input class="checkbox" name="tasks" type="checkbox">
-                <label for="${task}">${task}</label>
-            </div>
-        `
-        taskContainer.insertAdjacentHTML('beforeend', htmlContent);
-        taskInput.value = ''  //setting the input to empty after each TO-DO;
+    taskContainer.innerHTML = ''
 
-        // marking each task when done
+    // looping through tasks to display
+    tasks.forEach(task => {
+        let description = task.description,
+            status = 'done';
 
-        const checkboxes = document.querySelectorAll('input[type]');
-
-        checkboxes.forEach(checkbox => checkbox.addEventListener('click', (e) => e.target.checked ? e.target.nextElementSibling.classList.add('done') : e.target.nextElementSibling.classList.remove('done')))
-        
-
-        // console.log(tasks)
-        /*
-        The above can be done with the one-liner below
-        NOTE: with arrow function as an event callback, we loss access to  `this`
-        */
-        // checkboxes.forEach(checkbox => checkbox.addEventListener('click', (e) => (e.target.checked) ? e.target.nextElementSibling.classList.add('done') : e.target.nextElementSibling.classList.remove('done')));
-
-
+        taskContainer.innerHTML += `<div class="task">
+            <input type="checkbox"> ${description} <br>
+        <div>`
     })
-
-}())
+}
