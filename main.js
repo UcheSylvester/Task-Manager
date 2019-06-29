@@ -1,10 +1,11 @@
+"use strict";
+
 console.log('working');
 
 const taskContainer = document.getElementById('task-container');
 const form = document.getElementById('task-form')
 
 // fetching tasks from localstorage
-
 function fetchTasks() {
     const tasks = JSON.parse(localStorage.getItem('tasks'));
 
@@ -14,11 +15,11 @@ function fetchTasks() {
     tasks.forEach(task => {
         let description = task.description,
             status = task.status,
-            id = task.id
+            id = task.Id;
 
         taskContainer.innerHTML += `<div class="task">
             <input type="checkbox"> ${description} 
-            <button class="delete" deleteTask(${id})>Delete</button>
+            <button class="delete" onclick="deleteTask(${id})">Delete</button>
             <br>
         <div>
         `
@@ -30,10 +31,17 @@ function saveTask(e) {
     
     // calculating id
     let id = 0;
+    let increasing = true;
+    let increment = 1;
+
     function increaseId() {
-        return id++;
+        if(increasing) {
+            id += increment
+            return id;
+        }
     }
-    id = increaseId()
+
+    // const taskId = increaseId()
     const description = document.getElementById('task-input').value;
     console.log(description);
 
@@ -63,6 +71,13 @@ function saveTask(e) {
 
 }
 
+let number = 0;
+
+function increaseNumber() {
+    return number += 1;
+}
+
+
 /*
 TODO:
 
@@ -76,10 +91,7 @@ TODO:
 
 
 // Deleting Task
-
-function deleteTask() {
-    const tasks = JSON.parse(localStorage.getItem('tasks'));
-
+function deleteTask(id) {
 
 }
 
