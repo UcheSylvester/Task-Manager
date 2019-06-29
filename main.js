@@ -94,12 +94,14 @@ TODO:
 // Deleting Task
 function deleteTask(id) {
     const tasks = JSON.parse(localStorage.getItem('tasks'));
-    console.log(tasks);
+    // console.log(tasks);
 
     // looping through the array of tasks to delete task
     tasks.forEach((task,index, tasks) => {
         if(task.id === id) {
+            task.status = 'done'  //marking task as done before deleting
             tasks.splice(index, 1);
+            console.log(task)
         }
     })
     // pushing the modified aray of task back to localStorage
