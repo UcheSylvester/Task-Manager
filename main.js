@@ -15,11 +15,11 @@ function fetchTasks() {
     tasks.forEach(task => {
         let description = task.description,
             status = task.status,
-            id = task.Id;
+            id = task.id;
 
         taskContainer.innerHTML += `<div class="task">
             <input type="checkbox"> ${description} 
-            <button class="delete" onclick="deleteTask(${id})">Delete</button>
+            <button class="delete" onclick="deleteTask('${id}')">Delete</button>
             <br>
         <div>
         `
@@ -30,18 +30,19 @@ function saveTask(e) {
     e.preventDefault()
     
     // calculating id
-    let id = 0;
-    let increasing = true;
-    let increment = 1;
+    // let id = 0;
+    // let increasing = true;
+    // let increment = 1;
 
-    function increaseId() {
-        if(increasing) {
-            id += increment
-            return id;
-        }
-    }
+    // function increaseId() {
+    //     if(increasing) {
+    //         id += increment
+    //         return id;
+    //     }
+    // }
 
     // const taskId = increaseId()
+    const id = chance.guid()
     const description = document.getElementById('task-input').value;
     console.log(description);
 
@@ -92,7 +93,19 @@ TODO:
 
 // Deleting Task
 function deleteTask(id) {
+    const tasks = JSON.parse(localStorage.getItem('tasks'));
+    console.log(tasks);
 
+    // looping through the array of tasks to delete task
+    tasks.forEach((task,index, tasks) => {
+        if(task.id === id) {
+            tasks.splice(index, 1);
+        }
+    })
+    // pushing the modified aray of task back to localStorage
+    localStorage.setItem('tasks', JSON.stringify(tasks))
+    fetchTasks()
+    
 }
 
 form.addEventListener('submit', saveTask);
