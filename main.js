@@ -18,13 +18,36 @@ function fetchTasks() {
             id = task.id;
 
         taskContainer.innerHTML += `<div class="task">
-            <input type="checkbox"> ${description} 
-            <button class="delete" onclick="deleteTask('${id}')">Delete</button>
+            <input type="checkbox"> <span>${description}</span> 
+            <button class="delete" id="${id}" onclick="deleteTask('${id}')">Delete</button>
             <br>
         <div>
         `
     })
+
+    const checkboxes = document.querySelectorAll("input[type='checkbox']")
+
+    checkboxes.forEach(checkbox => checkbox.addEventListener('click', markAsDone))
 }
+
+function markAsDone() {
+
+    // const
+
+    const taskDescription = this.nextElementSibling;
+    const parent = this.parentElement;
+    console.dir(taskDescription)
+
+    if(this.checked === true) {
+        taskDescription.classList.add('task-done')
+        parent.classList.add('parent-done')
+    } else {
+        taskDescription.classList.remove('task-done')
+        parent.classList.remove('parent-done')
+    }
+    
+}
+
 
 function saveTask(e) {
     e.preventDefault()
@@ -60,17 +83,6 @@ function saveTask(e) {
 }
 
 
-/*
-TODO:
-
-1. Delete tasks from localStorage
-     generate id for each task (deleteButton)
-     use the id to check for the task that matches the id and delete it
-
-2.  Mark task as done using the the same id
-
-*/
-
 
 // Deleting Task
 function deleteTask(id) {
@@ -90,5 +102,7 @@ function deleteTask(id) {
     fetchTasks()
     
 }
+
+
 
 form.addEventListener('submit', saveTask);
