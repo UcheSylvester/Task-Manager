@@ -32,19 +32,40 @@ function fetchTasks() {
 
 function markAsDone() {
 
-    // const
+    const tasks = JSON.parse(localStorage.getItem('tasks'));
+    console.log(tasks)
 
     const taskDescription = this.nextElementSibling;
     const parent = this.parentElement;
-    console.dir(taskDescription)
+    const id = taskDescription.nextElementSibling.id;
+    console.log(id)
 
-    if(this.checked === true) {
-        taskDescription.classList.add('task-done')
-        parent.classList.add('parent-done')
-    } else {
-        taskDescription.classList.remove('task-done')
-        parent.classList.remove('parent-done')
-    }
+    tasks.forEach(task => {
+        if(task.id === id) {
+            // console.log('processed')
+            task.status = 'done';
+            // console.log(task)
+             if(task.status === 'done') {
+
+                if(this.checked === true) {
+                    taskDescription.classList.add('task-done')
+                    parent.classList.add('parent-done')
+                } else {
+                    taskDescription.classList.remove('task-done')
+                    parent.classList.remove('parent-done')
+                }
+
+             }
+        }
+    })
+
+    // if(this.checked === true) {
+    //     taskDescription.classList.add('task-done')
+    //     parent.classList.add('parent-done')
+    // } else {
+    //     taskDescription.classList.remove('task-done')
+    //     parent.classList.remove('parent-done')
+    // }
     
 }
 
@@ -92,7 +113,7 @@ function deleteTask(id) {
     // looping through the array of tasks to delete task
     tasks.forEach((task,index, tasks) => {
         if(task.id === id) {
-            task.status = 'done'  //marking task as done before deleting
+            // task.status = 'done'  //marking task as done before deleting
             tasks.splice(index, 1);
             console.log(task)
         }
