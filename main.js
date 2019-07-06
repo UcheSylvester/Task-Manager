@@ -28,20 +28,7 @@ function fetchTasks() {
 
 function saveTask(e) {
     e.preventDefault()
-    
-    // calculating id
-    // let id = 0;
-    // let increasing = true;
-    // let increment = 1;
 
-    // function increaseId() {
-    //     if(increasing) {
-    //         id += increment
-    //         return id;
-    //     }
-    // }
-
-    // const taskId = increaseId()
     const id = chance.guid()
     const description = document.getElementById('task-input').value;
     console.log(description);
@@ -70,12 +57,6 @@ function saveTask(e) {
 
     form.reset();
 
-}
-
-let number = 0;
-
-function increaseNumber() {
-    return number += 1;
 }
 
 
