@@ -53,13 +53,16 @@ form {
 }
 
 
-.done {
+.task-done {
     text-decoration: line-through;
     opacity: 0.5;
-
 }
 
-.done:hover {
+.parent-done {
+    opacity: 0.5;
+}
+
+.parent-done:hover {
     cursor: not-allowed;
 }
 
