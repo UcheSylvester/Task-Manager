@@ -30,6 +30,7 @@ function fetchTasks() {
     checkboxes.forEach(checkbox => checkbox.addEventListener('click', markAsDone))
 }
 
+// WORK ON THIS
 function markAsDone() {
 
     const tasks = JSON.parse(localStorage.getItem('tasks'));
